@@ -1,6 +1,6 @@
 <template>
   <div class="todo-header">
-    <input type="text" placeholder="请输入你的任务名称，按回车键确认"/>
+    <input type="text" placeholder="请输入你的任务名称，按回车键确认" @keyup.enter="addT" v-model="title"/>
   </div>
 </template>
 
@@ -8,7 +8,52 @@
 
 
   export default {
+    //指定接收的属性
+    props:{
+      addTodo:{
+        type:Function,
+        required:true
+      }
+    },
 
+    data(){
+      return{
+        title:''
+      }
+    },
+
+    methods:{
+/*      add (){
+        //根据输入的内容封装一个TODO对象
+        const title = this.title.trim()
+        if (!title){
+          return alert('请输入')
+        }
+        const todo ={
+          title,
+          complete:false
+        }
+        //调用addTodo()方法
+        this.addTodo(todo)
+        //清除输入的内容
+        this.title = ''
+      }*/
+      addT () {
+        // 根据输入的数据, 封装一个todo对象
+        const title = this.title.trim()
+        if(!title) {
+          return alert('必须输入')
+        }
+        const todo = {
+          title,
+          complete: false
+        }
+        // 调用 addTodo()添加todo
+        this.addTodo(todo)
+        // 清除输入
+        this.title = ''
+      }
+    }
   }
 </script>
 
