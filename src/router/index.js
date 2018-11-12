@@ -29,7 +29,13 @@ export default new VueRouter({
         },
         {
           path:'/home/message',
-          component:Message
+          component:Message,
+          children:[
+            {
+              path:'/home/message/detail/:id',
+              component:MessageDetail
+            }
+          ]
         }
       ]
     },
